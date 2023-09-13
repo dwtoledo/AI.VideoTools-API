@@ -2,3 +2,14 @@
 GET http://localhost:3333/prompts
 
 ###
+
+# @name upload-video
+POST http://localhost:3333/videos
+Content-Type: multipart/form-data; boundary=----FileUploadTest
+
+------FileUploadTest
+Content-Disposition: form-data; name="file"; filename="example.mp3"
+Content-Type: audio/mpeg3
+
+< ./example.mp3
+------FileUploadTest--
