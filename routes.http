@@ -13,3 +13,13 @@ Content-Type: audio/mpeg3
 
 < ./example.mp3
 ------FileUploadTest--
+
+###
+
+# @name create-transcription
+POST http://localhost:3333/videos/83cd5598-aeec-4731-9377-be44da734c2c/transcription
+Content-Type: application/json
+
+{
+  "prompt": "ChatGPT,  Explained, What Is, Introduction, Applications, Coding with AI, Content Creation with AI, Examples, Automation"
+}
