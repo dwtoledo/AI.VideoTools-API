@@ -23,3 +23,16 @@ Content-Type: application/json
 {
   "prompt": "ChatGPT,  Explained, What Is, Introduction, Applications, Coding with AI, Content Creation with AI, Examples, Automation"
 }
+
+###
+
+# @name generate-ai-results
+POST http://localhost:3333/ai/result
+Content-Type: application/json
+
+{
+  "videoId": "83cd5598-aeec-4731-9377-be44da734c2c",
+  "temperature": 0,
+  "template": "Generate a succinct summary of the following video transcription: '''{transcription}'''"
+
+}
