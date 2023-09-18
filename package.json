@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/server.ts"
+    "dev": "tsx watch src/server.ts",
+    "build": "tsup src",
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +27,7 @@
     "dotenv": "^16.3.1",
     "fastify": "^4.23.1",
     "openai": "^4.6.0",
+    "tsup": "^7.2.0",
     "zod": "^3.22.2"
   }
 }
