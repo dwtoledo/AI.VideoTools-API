@@ -2,6 +2,7 @@ import { FastifyInstance } from 'fastify'
 import { prisma } from '../lib/prisma'
 import { z } from 'zod'
 import { openAI } from '../lib/openai'
+import { streamToResponse, OpenAIStream } from 'ai'
 
 const bodySchema = z.object({
   videoId: z.string().uuid(),
@@ -19,6 +20,7 @@ async function generateAIResult(temperature, promptUserMessage) {
         content: promptUserMessage,
       },
     ],
+    stream: true,
   })
 }
 
@@ -44,7 +46,19 @@ export async function generateAIResultRoute(app: FastifyInstance) {
         video.transcription,
       )
 
-      return generateAIResult(temperature, promptWithTranscription)
+      const aiResult = await generateAIResult(
+        temperature,
+        promptWithTranscription,
+      )
+
+      const stream = OpenAIStream(aiResult)
+
+      streamToResponse(stream, response.raw, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        },
+      })
     } catch (err) {
       if (err instanceof z.ZodError)
         response.status(400).send({ error: err.issues })
