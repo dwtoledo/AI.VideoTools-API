@@ -1,7 +1,7 @@
 node_modules
 
 # Used for Transcription tests
-example.mp3
+routes.http
 tmp
 
 # Environments variables
