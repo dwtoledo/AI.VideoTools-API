@@ -2,6 +2,7 @@ node_modules
 
 # Used for Transcription tests
 example.mp3
+tmp
 
 # Environments variables
 .env
