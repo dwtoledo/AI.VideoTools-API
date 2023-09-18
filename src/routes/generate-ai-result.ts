@@ -6,13 +6,13 @@ import { streamToResponse, OpenAIStream } from 'ai'
 
 const bodySchema = z.object({
   videoId: z.string().uuid(),
-  template: z.string(),
+  prompt: z.string(),
   temperature: z.number().min(0).max(1).default(0.5),
 })
 
 async function generateAIResult(temperature, promptUserMessage) {
   return await openAI.chat.completions.create({
-    model: 'gpt-3.5-turbo-16k',
+    model: 'gpt-3.5-turbo',
     temperature,
     messages: [
       {
@@ -27,7 +27,7 @@ async function generateAIResult(temperature, promptUserMessage) {
 export async function generateAIResultRoute(app: FastifyInstance) {
   app.post('/ai/result', async (request, response) => {
     try {
-      const { videoId, template, temperature } = bodySchema.parse(request.body)
+      const { videoId, prompt, temperature } = bodySchema.parse(request.body)
 
       const video = await prisma.videos.findUniqueOrThrow({
         where: {
@@ -41,7 +41,7 @@ export async function generateAIResultRoute(app: FastifyInstance) {
           .send({ error: 'Video transcription was not generated yet.' })
       }
 
-      const promptWithTranscription = template.replace(
+      const promptWithTranscription = prompt.replace(
         '{transcription}',
         video.transcription,
       )
@@ -56,7 +56,7 @@ export async function generateAIResultRoute(app: FastifyInstance) {
       streamToResponse(stream, response.raw, {
         headers: {
           'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Methods': 'GET, POST',
         },
       })
     } catch (err) {
