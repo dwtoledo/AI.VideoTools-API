@@ -21,5 +21,5 @@ app
     port: 3333,
   })
   .then(() => {
-    console.log('Upload AI API Running!')
+    console.log('Ai VideoTools API Running!')
   })
