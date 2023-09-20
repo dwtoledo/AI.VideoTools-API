@@ -12,7 +12,7 @@ How does it work?
 6. The results are shown on the screen once the user clicks on the "Generate" button.
 
 ## The backend
-This project integrates the web application, OpenAI's artificial intelligence, and the database. Used the Fastify Node.js backend framework with TypeScript to develop the API, and integrated it with an SQLite database using Prisma.
+This project integrates the web application, OpenAI's artificial intelligence, and the database. Used the Fastify Node.js backend framework with TypeScript to develop the API, and integrated it with an SQLite database using Prisma. Used Zod library to handle with API requests validations.
 
 ## Where is the frontend?
 Ai.VideoTools Web repository:
@@ -35,7 +35,7 @@ https://github.com/dwtoledo/ai-video-tools-web
         port:  3333, //CHANGE HERE
       })
       .then(() => {
-        console.log('Upload AI API Running!')
+        console.log('Ai VideoTools API Running!')
       })
     ```
  
