@@ -1,10 +1,4 @@
 node_modules
-
-# Used for Transcription tests
-routes.http
-tmp
-
-# Environments variables
 .env
 
 # Editor directories and files
