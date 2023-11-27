@@ -1,0 +1,1 @@
+This folder is necessary to store all temporary audio files that will be used for transcription and to generate AI results.
